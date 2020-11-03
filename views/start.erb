@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="jumbotron">
+    <h1 class="display-4"><%= @guess_message %></h1>
+    <p class="lead"><%= @hint_message %></p>
+    <hr class="my-4">
+    <form class="" method="post" action="/start" class="needs-validation">
+        <div class="form-group">
+            <input class="form-control" type="text" name="guess" required>
+        </div>
+        <div class="invalid-feedback">
+          Please make a guess!
+        </div>
+        <button class="btn btn-primary btn-lg" type="submit">Guess Again</button>
+    </form>
+    </div>
+</div>
