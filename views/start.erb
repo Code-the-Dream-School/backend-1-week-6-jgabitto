@@ -1,16 +1,29 @@
 <div class="container">
     <div class="jumbotron">
-    <h1 class="display-4"><%= @guess_message %></h1>
+    <% if @hint_message == "You guessed correctly!" %>
+        <h1 class="display-4">I guess you are not a sucka</h1>
+    <% else %>
+        <h1 class="display-4"><%= @guess_message %></h1>
+    <% end %>
     <p class="lead"><%= @hint_message %></p>
+    <% if @guess_number == 8 || @hint_message == "You guessed correctly!" %>
+        <p class="lead">The secret number was <%= @number %></p>
+    <% end %>
     <hr class="my-4">
-    <form class="" method="post" action="/start" class="needs-validation">
-        <div class="form-group">
-            <input class="form-control" type="text" name="guess" required>
-        </div>
-        <div class="invalid-feedback">
-          Please make a guess!
-        </div>
-        <button class="btn btn-primary btn-lg" type="submit">Guess Again</button>
+    <form method="post" action="/start" autocomplete="off">
+        <% if @guess_number == 8 || @hint_message == "You guessed correctly!"%>
+        <a class="btn btn-primary btn-lg" href="/" role="button">Start Over</a>
+        <% elsif @guess_number != 1%>
+            <div class="form-group">
+                <input class="form-control" type="text" name="guess" required>
+            </div>
+            <button class="btn btn-primary btn-lg" type="submit">Guess Again</button>
+        <% else %>
+            <div class="form-group">
+                <input class="form-control" type="text" name="guess" required>
+            </div>
+            <button class="btn btn-primary btn-lg" type="submit">Guess</button>
+        <% end %>
     </form>
     </div>
 </div>
